@@ -23,7 +23,8 @@ public class Member {
     @Embedded // 내장 타입을 포함했다는 어노테이션
     private Address address;
 
-    @OneToMany(mappedBy = "member") // order 테이블의 member 필드에 맵핑됬다 읽기 전용
+//   TODO  관계 형성
+    @OneToMany(mappedBy = "member_key") // order 테이블의 member 필드에 맵핑됬다 읽기 전용
     private List<Order> order_list = new ArrayList<>();
 
 }

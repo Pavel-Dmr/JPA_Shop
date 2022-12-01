@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Order_Item {
+// 특정 상품을 몇개을 주문했는지, 총합 가격이 얼마인지
 
     @Id
     @GeneratedValue
@@ -17,15 +18,17 @@ public class Order_Item {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="item_id")
-    private Item item;
+    @JoinColumn(name="item_key")
+    private Item item_key;
 
     @ManyToOne
-    @JoinColumn(name="order_id")
-    private Order order;
+    @JoinColumn(name="order_key")
+    private Order order_key;
 
-    private int order_price; // 주문 가격
-    private int order_count; // 주문 수량
+    @Column(name = "order_item_price")
+    private int price; // 주문 가격
+    @Column(name="order_item_count")
+    private int count; // 주문 수량
 
 
 }

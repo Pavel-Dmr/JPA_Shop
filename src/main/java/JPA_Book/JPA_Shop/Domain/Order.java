@@ -21,19 +21,23 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id") // 외래키가 member_id
-    private Member member;
-
-    @OneToMany(mappedBy = "order")
-    private List<Order_Item> order_item_list =  new ArrayList<>();
-
-    @OneToOne
-    @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
-
-    private LocalDateTime order_date;
+    @Column(name = "order_date")
+    private LocalDateTime date;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "order_status")
     private Order_Status status; // 주문상태 [ORDER, CANCEL]
+
+//   TODO  관계 형성
+
+    @ManyToOne
+    @JoinColumn(name="member_key")
+    private Member member_key;
+
+    @OneToMany(mappedBy = "order_key")
+    private List<Order_Item> order_item_list =  new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "delivery_key")
+    private Delivery delivery_key;
+
 }

@@ -16,21 +16,24 @@ public class Category {
 
     @Id
     @GeneratedValue()
-    @Column(name="category_id")
+    @Column(name = "category_id")
     private Long id;
+
+    @Column(name="category_name")
     private String name;
 
     //중간 테이블 맵핑
     // 일대다 다대일을 연결하는 중간테이블이 필요함
-    @ManyToMany
-    @JoinTable(name="category_item",joinColumns = @JoinColumn(name = "category_id"),inverseJoinColumns = @JoinColumn(name="item_id"))
-            private List<Item> item_list = new ArrayList<>();
+    @OneToMany(mappedBy = "category_key")
+    private List<Item_And_Category> IC_list = new ArrayList<>();
 
+//    주항목
     @ManyToOne
-    @JoinColumn(name = "parent_id")
-    private Category parent;
+    @JoinColumn(name = "parent_key")
+    private Category parent_key;
 
-    @OneToMany(mappedBy = "parent")
-    private List<Category> child = new ArrayList<>();
+    //세부 항목
+    @OneToMany(mappedBy = "parent_key")
+    private List<Category> child_key = new ArrayList<>();
 
 }

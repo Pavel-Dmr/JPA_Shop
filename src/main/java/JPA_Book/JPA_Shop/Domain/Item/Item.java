@@ -1,6 +1,7 @@
 package JPA_Book.JPA_Shop.Domain.Item;
 
 import JPA_Book.JPA_Shop.Domain.Category;
+import JPA_Book.JPA_Shop.Domain.Item_And_Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,13 +23,19 @@ public abstract class Item {
     @Column(name="item_id")
     private Long id;
 
+    @Column(name="item_name")
     private String name;
 
+    @Column(name="item_price")
     private int price;
+
+    @Column(name="item_stock_quantity")
     private int stock_quantity;
 
-    @ManyToMany(mappedBy = "item_list")// 중간 테이블 맵핑
+//    TODO 관계 형성
+
 //    1다대 다대1일을 연결하는 중간 테이블이 필요함
-    private List<Category> category_list = new ArrayList<>();
+    @OneToMany(mappedBy = "item_key")// 중간 테이블 맵핑
+    private List<Item_And_Category> IC_list = new ArrayList<>();
 
 }
