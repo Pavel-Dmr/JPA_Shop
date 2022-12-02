@@ -22,6 +22,7 @@ public class Category {
     @Column(name="category_name")
     private String name;
 
+//    TODO 외래키
     //중간 테이블 맵핑
     // 일대다 다대일을 연결하는 중간테이블이 필요함
     @OneToMany(mappedBy = "category_key")
@@ -36,4 +37,10 @@ public class Category {
     @OneToMany(mappedBy = "parent_key")
     private List<Category> child_key = new ArrayList<>();
 
+//    TODO 연관 관계 메서드
+    public void addChildCategory(Category child)
+    {
+        this.child_key.add(child);
+        child.setParent_key(this);
+    }
 }

@@ -16,7 +16,7 @@ public class Item_And_Category {
     @Column(name ="IC_id")
     private Long IC_id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_key")
     private Item item_key;
 

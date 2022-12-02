@@ -23,7 +23,7 @@ class Member_RepositoryTest {
         Member member = new Member();
         member.setName("Member_A");
         Long save_id = member_repository.save(member);
-        Member find_member = member_repository.find(save_id);
+        Member find_member = member_repository.findOne(save_id);
         Assertions.assertThat(find_member.getId()).isEqualTo(member.getId());
     }
 
@@ -35,7 +35,7 @@ class Member_RepositoryTest {
         Member member = new Member();
         member.setName("memberA");
         Long savedId = member_repository.save(member);
-        Member findMember = member_repository.find(savedId);
+        Member findMember = member_repository.findOne(savedId);
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
 
         Assertions.assertThat(findMember.getName()).isEqualTo(member.getName());
